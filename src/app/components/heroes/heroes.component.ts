@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroesService } from '../../services/heroes.service';
-
+import { HeroesService, Heroe } from '../../services/heroes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
@@ -8,9 +8,17 @@ import { HeroesService } from '../../services/heroes.service';
 })
 export class HeroesComponent implements OnInit {
 
-  constructor() { }
+  heroes:Heroe[] = [];
+
+  constructor( 
+    private _heroesService: HeroesService,
+    private _router: Router
+    ) { 
+    //console.log('Contstructor');
+   }
 
   ngOnInit() {
+    this.heroes = this._heroesService.getHeroes();
+    //console.log(this.heroes);
   }
-
 }
